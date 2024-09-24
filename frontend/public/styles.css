@@ -27,8 +27,10 @@ nav {
     background-color: #023e8a; /* Deep ocean blue */
     padding: 0 50px;
     font-family: 'Poppins', sans-serif;
-    /* position: relative;
-    z-index: 10; */
+    margin: 50px;
+    border-radius: 25px;
+    position: relative;
+    z-index: 10;
 }
 
 nav .logo a {
@@ -85,6 +87,12 @@ nav .nav-links a:hover {
 
 /* Responsive behavior */
 @media screen and (max-width: 768px) {
+
+    nav {
+        border-radius: 0;
+        margin: 0;
+    }
+
     nav .nav-right-links {
         display: none; /* Hide links by default */
     }
