@@ -1,0 +1,127 @@
+/* body styles */
+body {
+    /* Layout and Spacing */
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    box-sizing: border-box;
+
+    scroll-behavior: smooth;
+
+    /* body background and text */
+    background: linear-gradient(to bottom, #0077b6, #00b4d8, #90e0ef);
+    color: #ffffff;
+    font-family: 'Poppins', arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+
+/* Base styling for the nav */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    background-color: #023e8a; /* Deep ocean blue */
+    padding: 0 50px;
+    font-family: 'Poppins', sans-serif;
+    /* position: relative;
+    z-index: 10; */
+}
+
+nav .logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff; /* White logo */
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+/* Style for nav links */
+nav .nav-right-links {
+    display: flex;
+}
+
+nav .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav .nav-links li {
+    display: inline-block;
+}
+
+nav .nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 8px 15px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+nav .nav-links a:hover {
+    color: #ffdd00; /* Gold hover color */
+    background-color: rgba(255, 255, 255, 0.2); /* Transparent hover effect */
+}
+
+/* Mobile responsive menu */
+.burger {
+    display: none; /* Hidden by default */
+    cursor: pointer;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Responsive behavior */
+@media screen and (max-width: 768px) {
+    nav .nav-right-links {
+        display: none; /* Hide links by default */
+    }
+
+    .burger {
+        display: block; /* Show burger menu */
+    }
+
+    .nav-right-links.active {
+        display: flex; /* Show links when active */
+        flex-direction: column; /* Stack links vertically */
+        position: absolute; /* Overlay */
+        right: 0; /* Align to the right */
+        top: 60px; /* Below the nav */
+        background-color: #023e8a; /* Same background as navbar */
+        width: 100%; /* Full width */
+        z-index: 5;
+        padding: 10px 0; /* Padding for the links */
+    }
+
+    nav .nav-links {
+        flex-direction: column; /* Stack vertically in mobile view */
+        align-items: center; /* Center align links */
+    }
+
+    nav .nav-links li {
+        margin: 10px 0; /* Space between links */
+    }
+
+    /* Animate burger icon when clicked */
+    .burger.toggle .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .burger.toggle .line2 {
+        opacity: 0; /* Hide the middle line */
+    }
+    .burger.toggle .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+}
