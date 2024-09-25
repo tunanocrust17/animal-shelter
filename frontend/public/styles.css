@@ -63,12 +63,13 @@ nav .nav-links a {
     text-transform: uppercase;
     letter-spacing: 1px;
     padding: 8px 15px;
-    transition: color 0.3s ease, background-color 0.3s ease;
+    transition: color 0.3s ease, background-color 0.3s ease, border-radius 0 ease;
 }
 
 nav .nav-links a:hover {
-    color: #ffdd00; /* Gold hover color */
+    color: #00c3ff; /* Gold hover color */
     background-color: rgba(255, 255, 255, 0.2); /* Transparent hover effect */
+    border-radius: 25px;
 }
 
 /* Mobile responsive menu */
@@ -88,9 +89,19 @@ nav .nav-links a:hover {
 /* Responsive behavior */
 @media screen and (max-width: 768px) {
 
+    /* navbar media */
     nav {
+        justify-content: center;
+        position: relative;
         border-radius: 0;
         margin: 0;
+        padding: 0 25px;
+    }
+
+    .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%); /* Center logo horizontally */
     }
 
     nav .nav-right-links {
@@ -98,12 +109,17 @@ nav .nav-links a:hover {
     }
 
     .burger {
-        display: block; /* Show burger menu */
+        display: block;   /* Ensure burger is visible on mobile */
+        position: absolute;
+        left: 20px;       /* Position it on the left side */
+        top: 50%;         /* Vertically center it */
+        transform: translateY(-50%);
     }
 
     .nav-right-links.active {
         display: flex; /* Show links when active */
         flex-direction: column; /* Stack links vertically */
+        justify-content: center;
         position: absolute; /* Overlay */
         right: 0; /* Align to the right */
         top: 60px; /* Below the nav */
@@ -132,4 +148,3 @@ nav .nav-links a:hover {
     .burger.toggle .line3 {
         transform: rotate(45deg) translate(-5px, -6px);
     }
-}
