@@ -67,8 +67,8 @@ nav .nav-links a {
 }
 
 nav .nav-links a:hover {
-    color: #00c3ff; /* Gold hover color */
-    background-color: rgba(255, 255, 255, 0.2); /* Transparent hover effect */
+    color: #023e8a; /* Gold hover color */
+    background-color: #ffb703; /* Transparent hover effect */
     border-radius: 25px;
 }
 
@@ -83,8 +83,72 @@ nav .nav-links a:hover {
     height: 3px;
     background-color: #ffffff;
     margin: 5px;
-    transition: all 0.3s ease;
+    transition: all 5s ease;
 }
+
+
+/* main section stylying */
+
+main {
+    margin: 50px;
+}
+
+.section {
+    display: flex;
+    flex-direction: row;
+    padding: 0 50px;
+    justify-content: space-between;
+    align-items: center;
+    /* height: 100vh; */
+    /* background-color: #014f86; Transparent white for sections */
+    /* border-radius: 10px; */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); Soft shadow */
+}
+
+.hero-image {
+    width: 50%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: cover;
+}
+
+.hero-text {
+    width: 50%; /* Text takes up the other half */
+    padding-left: 20px; /* Some spacing between image and text */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align:start;
+}
+
+.hero-text h2 {
+    font-size: 2rem; /* Adjust the text size as needed */
+}
+
+.shop-now-btn {
+    background-color: #023e8a; /* Deep ocean blue */
+    color: white; /* White text */
+    border: none; /* Remove default borders */
+    padding: 12px 30px; /* Adjust padding for a comfortable size */
+    border-radius: 25px; /* Rounded button to match the navbar */
+    font-size: 1rem; /* Font size similar to nav links */
+    text-transform: uppercase; /* Match nav link style */
+    letter-spacing: 1px; /* Match letter spacing */
+    font-family: 'Poppins', sans-serif; /* Same font as the rest of the page */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Floating effect similar to navbar */
+    text-decoration: none;
+}
+
+.shop-now-btn:hover {
+    background-color: #ffb703; /* Gold color on hover */
+    color: #023e8a; /* Text turns deep blue on hover */
+    transform: scale(1.05); /* Slight scale-up effect on hover */
+}
+
+
 
 /* Responsive behavior */
 @media screen and (max-width: 768px) {
@@ -106,6 +170,8 @@ nav .nav-links a:hover {
 
     nav .nav-right-links {
         display: none; /* Hide links by default */
+        opacity: 0;
+        transition: opacity 0.3s ease-in;
     }
 
     .burger {
@@ -127,6 +193,8 @@ nav .nav-links a:hover {
         width: 100%; /* Full width */
         z-index: 5;
         padding: 10px 0; /* Padding for the links */
+        opacity: 1;
+        transition: opacity 4s ease-out;
     }
 
     nav .nav-links {
@@ -147,5 +215,24 @@ nav .nav-links a:hover {
     }
     .burger.toggle .line3 {
         transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    main {
+        margin: 20px;
+    }
+
+    .section {
+        flex-direction: column;
+    }
+
+    .hero-image {
+        width: 100%;
+    }
+
+    .hero-text {
+        width: 100%; /* Text takes up the other half */
+        text-align: center;
+        padding-left: 20px; /* Some spacing between image and text */
+        
     }
 }
