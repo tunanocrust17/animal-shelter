@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Dive Gear</title>
+</head>
+<body>
+    <%- include('components/navbar') %>
+
+    <main>
+        <div class="page-intro">
+            <h2><%= intro %> </h2>
+        </div>
+        <div class="content-container">
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <h2>Categories</h2>
+                    <ul>
+                        <li>
+                            <a href="/shop">All Items</a>
+                        </li>
+                        <li>
+                            <a href="/shop/masks">Masks</a>
+                        </li>
+                        <li>
+                            <a href="/shop/bcd">BCDs</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    
+            <section>
+                <div class="items-container">
+                    <h1><%= title %></h1>
+                    <% if(!items || items.length === 0) { %>
+                        <div class="no-items">
+                            <h3>Sorry no items</h3>
+                        </div>
+                    <% } else { %>
+                    <div class="items">
+                        <% items.forEach( (animal) => { %>
+                            <a href="/adopt/<%= animal.id %>">
+                                <div class="item-card">
+                                    <img src=" <%= animal.img %> " alt="<%= animal.name %>">
+                                    <h4> <%= animal.name %> </h4>
+                                    <p> <%= animal.age %></p>
+                                </div>
+                            </a>
+                        <% }) %>
+                    </div>
+                    <% } %>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <%- include('components/footer') %>
+
+    <script src="/index.js"></script>
+
+</body>
+</html>
