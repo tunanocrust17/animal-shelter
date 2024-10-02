@@ -8,5 +8,5 @@ burger.addEventListener('click', () => {
     navLinks.classList.toggle('active');
     
     // Toggle a class on the burger icon for animation
-    burger.classList.toggle('toggle');
+    burger.classList.toggle('active');
 });
