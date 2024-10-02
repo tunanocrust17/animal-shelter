@@ -4,20 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css">
-    <title>Neptune's Gear</title>
+    <title>Paws for Love Animal Shelter</title>
 </head>
 <body>
         <%- include('components/navbar') %>
 
         <main>
             <section class="section hero">
-                <img src="/images/dive-gear.jpg" alt="Dive gear" class="hero-image">
                 <div class="hero-text">
-                    <h2>Gear Up, Dive In: Explore the Depths with Confidence</h2>
-                    <a href="/" class="shop-now-btn">
-                        Shop Now
+                    <h2>Bring Love Home: Adopt, Foster, or Donate Today</h2>
+                    <a href="/adopt" class="adopt-now-btn">
+                        Meet Our Animals
                     </a> 
                 </div>
+                <img src="https://images.unsplash.com/photo-1682448169828-039868860001?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y2F0JTIwYW5kJTIwZG9nfGVufDB8fDB8fHwy" alt="Happy Pets" class="hero-image">
+            </section>
+
+            <section class="section animals">
+                <h3>Adoptable Pets</h3>
+                <div class="animal-gallery">
+                    <img src="/images/dog1.jpg" alt="Adoptable dog">
+                    <img src="/images/cat1.jpg" alt="Adoptable cat">
+                    <img src="/images/dog2.jpg" alt="Adoptable dog">
+                    <img src="/images/cat2.jpg" alt="Adoptable cat">
+                </div>
+                <a href="/adopt" class="adopt-btn">See All Pets</a>
             </section>
         </main>
 
