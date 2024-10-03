@@ -14,44 +14,29 @@
             <h2><%= intro %> </h2>
         </div>
         <div class="content-container">
-            <div class="sidebar">
-                <div class="sidebar-header">
-                    <h2>Categories</h2>
-                    <ul>
-                        <li>
-                            <a href="/shop">All Items</a>
-                        </li>
-                        <li>
-                            <a href="/shop/masks">Masks</a>
-                        </li>
-                        <li>
-                            <a href="/shop/bcd">BCDs</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-    
-            <section>
-                <div class="items-container">
-                    <h1><%= title %></h1>
-                    <% if(!items || items.length === 0) { %>
-                        <div class="no-items">
-                            <h3>Sorry no items</h3>
-                        </div>
-                    <% } else { %>
-                    <div class="items">
-                        <% items.forEach( (animal) => { %>
-                            <a href="/adopt/<%= animal.id %>">
-                                <div class="item-card">
-                                    <img src=" <%= animal.img %> " alt="<%= animal.name %>">
-                                    <h4> <%= animal.name %> </h4>
-                                    <p> <%= animal.age %></p>
-                                </div>
-                            </a>
-                        <% }) %>
+            <!-- Sidebar Section -->
+            <%- include('components/sidebar') %>
+            
+            <!-- Items Section -->
+            <section class="section items-container">
+                <h1><%= title %></h1>
+                <% if(!items || items.length === 0) { %>
+                    <div class="no-items">
+                        <h3>Sorry no items</h3>
                     </div>
-                    <% } %>
+                <% } else { %>
+                <div class="items">
+                    <% items.forEach( (animal) => { %>
+                        <a href="/profile/<%= animal.id %>">
+                            <div class="item-card">
+                                <img src=" <%= animal.img %> " alt="<%= animal.name %>">
+                                <h4> <%= animal.name %> </h4>
+                                <p> <%= animal.age %></p>
+                            </div>
+                        </a>
+                    <% }) %>
                 </div>
+                <% } %> 
             </section>
         </div>
     </main>
