@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title><%= animal.name %>></title>
+</head>
+<body>
+    <%- include('components/navbar') %>
+
+    <main>
+        <div class="page-intro">
+            <h2><%= animal.intro %> </h2>
+        </div>
+        <div class="content-container">
+            <!-- Sidebar Section -->
+             <%- include('components/sidebar') %>
+            
+            <!-- Items Section -->
+            <section class="section items-container">
+                <h1><%= title %></h1>
+                
+                <div class="items">
+                        <div class="item-card">
+                            <img src=" <%= animal.img %> " alt="<%= animal.name %>">
+                            <h4> <%= animal.name %> </h4>
+                            <p> <%= animal.age %></p>
+                        </div>
+                </div>
+                 
+            </section>
+        </div>
+    </main>
+
+    <script src="/index.js"></script>
+</body>
+</html>
