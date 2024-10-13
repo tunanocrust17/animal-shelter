@@ -3,7 +3,8 @@ const path = require('node:path')
 const dotenv = require('dotenv')
 const {indexRouter} = require('./routes/indexRouter')
 const {adoptRouter} = require('./routes/adoptRouter')
-const {animalRouter} = require('./routes/animalRouter')
+const {profileRouter} = require('./routes/profileRouter')
+const {adminRouter} = require('./routes/adminRouter')
 
 const app = express()
 
@@ -24,7 +25,8 @@ app.use(express.static(assetsPath))
 
 app.use('/', indexRouter)
 app.use('/adopt', adoptRouter)
-app.use('/profile', animalRouter)
+app.use('/profile', profileRouter)
+app.use('/admin', adminRouter)
 
 const PORT = process.env.PORT
 app.listen(PORT, console.log(`Server running on ${PORT}`))
