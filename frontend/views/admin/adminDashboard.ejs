@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Admin Dashboard - Paws for Love Animal Shelter</title>
+</head>
+<body>
+    <%- include('../components/navbar') %>
+
+    <div class="admin-container">
+        <!-- Sidebar for Admin Links -->
+        <aside class="admin-sidebar">
+            <h2>Admin Dashboard</h2>
+            <ul>
+                <li><a href="/admin/dashboard">Dashboard</a></li>
+                <li><a href="/admin/createAnimal">Add New Animal</a></li>
+                <li><a href="/admin/settings">Settings</a></li>
+                <li><a href="/admin/settings">Sign Out</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="admin-content">
+            <!-- List of Animals for Admin Management -->
+            <h2>Current Animals</h2>
+            <div class="animal-list">
+                <% animals.forEach(animal => { %>
+                    <div class="animal-card">
+                        <img src="<%= animal.img %>" alt="<%= animal.name %>">
+                        <h4><%= animal.name %></h4>
+                        <p>Age: <%= animal.age %></p>
+                        <p>Type: <%= animal.type %></p>
+                        <a href="/admin/edit-animal/<%= animal.id %>" class="edit-btn">Edit</a>
+                        <a href="/admin/delete-animal/<%= animal.id %>" class="delete-btn">Delete</a>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../components/footer') %>
+
+    <script src="/index.js"></script>
+</body>
+</html>
