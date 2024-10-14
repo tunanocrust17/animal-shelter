@@ -17,7 +17,7 @@ adminRouter.get('/createAnimal', (req, res) => {
     res.render('./admin/createAnimal')
 })
 
-adminRouter.post('/', async (req, res) => {
+adminRouter.post('/createAnimal', async (req, res) => {
     try{
         await animalController.createAnimal(req, res)
     } catch(err){
