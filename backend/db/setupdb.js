@@ -117,7 +117,7 @@ async function main() {
         await client.query(CREATE_ANIMALS_HOBBIES_TABLE_SQL)
         await client.query(CREATE_ANIMALS_QUIRKS_TABLE_SQL)
         await client.query(INSERT_HOBBIES_SQL)
-        // await client.query(INSERT_QUIRKS_SQL)
+        await client.query(INSERT_QUIRKS_SQL)
         await client.query('COMMIT')
     } catch(err) {
         await client.query('ROLLBACK')
