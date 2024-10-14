@@ -22,14 +22,25 @@ class AdoptController {
     }
 
     async getBySpecies(req, res) {
+        
         const species = req.params.species
+
         try {
             const animals = await AnimalClass.getBySpecies(species)
-            res.render('adopt', {
-                title: animals[0].species,
-                intro: 'Meet the Paws That Need a Home!',
-                items: animals
-            })
+            
+            if(animals && animals.length > 0 ) {
+                res.render('adopt', {
+                    title: animals[0].species,
+                    intro: 'Meet the Paws That Need a Home!',
+                    items: animals
+                })
+            } else {
+                res.render('adopt', {
+                    title: 'No animals found',
+                    intro: 'Sorry, no animals available in this category',
+                    items: []
+                })
+            }
         } catch(err) {
             console.error('Error finding animals: ', err);
             res.status(500).send('Error finding animals')
