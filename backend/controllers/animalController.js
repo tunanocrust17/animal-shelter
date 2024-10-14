@@ -20,11 +20,11 @@ class AnimalController{
     }
 
     async createAnimal(req, res) {
-        const {name, species, age, gender, weight, img} = req.body
+        const {name, species, age, age_units, gender, weight, weight_unit, img, adopted} = req.body
 
         try {
-            await AnimalClass.createAnimal(name, species, age, gender, weight, img);
-            res.redirect('/');
+            await AnimalClass.createAnimal(name, species, age, age_units, gender, weight, weight_unit, img, adopted);
+            res.redirect('dashboard');
         } catch (error) {
             console.error('Error creating animal:', error);
             res.status(500).send('Error creating animal');

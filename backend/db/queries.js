@@ -15,9 +15,9 @@ class FormData {
 }
 
 class AnimalClass {
-    static async createAnimal(name, species, age, gender, weight, img){
-        const query = 'INSERT INTO Animals (name, species, age, gender, weight, img) VALUES ($1, $2, $3, $4, $5, $6)'
-        const values = [name, species, age, gender, weight, img]
+    static async createAnimal(name, species, age, age_units, gender, weight, weight_unit, img, adopted){
+        const query = 'INSERT INTO Animals (name, species, age, age_units, gender, weight, weight_unit, img, adopted) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)'
+        const values = [name, species, age, age_units, gender, weight, weight_unit, img, adopted]
         try {
             await pool.query(query, values)
         } catch(err){
