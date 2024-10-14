@@ -5,12 +5,18 @@
             <li>
                 <a href="/adopt">All Animals</a>
             </li>
-            <li>
-                <a href="/adopt/dog">Dogs</a>
-            </li>
-            <li>
-                <a href="/adopt/cat">Cats</a>
-            </li>
+            
+            <!-- adds different species dynamically -->
+            <% animalSpecies.forEach(species => { %>
+                <% if(species) { %>
+                    <li>
+                        <a href="/adopt/<%= species.toLowerCase() %>">
+                            <%= species.charAt(0).toUpperCase() + species.slice(1) %>
+                        </a>
+                    </li>
+                <% } %>
+            <% }) %>
+            
         </ul>
     </div>
 </div>

@@ -5,6 +5,7 @@ const {indexRouter} = require('./routes/indexRouter')
 const {adoptRouter} = require('./routes/adoptRouter')
 const {profileRouter} = require('./routes/profileRouter')
 const {adminRouter} = require('./routes/adminRouter')
+const categoryMiddleware = require('./middleware/categoryMiddleware')
 
 const app = express()
 
@@ -17,6 +18,9 @@ app.set('view engine', 'ejs')
 
 //parses incoming data from a post request and makes it available to the req.body
 app.use(express.urlencoded({extended: true}))
+
+//Middleware to query animal categories
+app.use(categoryMiddleware)
 
 //defines the css path and makes them available to be served
 const assetsPath = path.join(__dirname, '../frontend', 'public')
