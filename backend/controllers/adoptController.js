@@ -23,7 +23,8 @@ class AdoptController {
 
     async getBySpecies(req, res) {
         
-        const species = req.params.species
+        const result = req.params.species
+        const species = result.charAt(0).toUpperCase() + result.slice(1)
 
         try {
             const animals = await AnimalClass.getBySpecies(species)
