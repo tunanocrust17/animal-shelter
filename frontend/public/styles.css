@@ -96,9 +96,10 @@ footer {
     border-top: 2px solid #ddd; /* Subtle border on top */
     font-size: 1rem;
     width: 100%; /* Full width to span across the page */
-    position: relative;
-    bottom: 0;
+    /* position: relative;
+    bottom: 0; */
     flex-shrink: 0;
+    margin-top: auto; /* Pushes the footer to the bottom */
 }
 
 footer p {
@@ -340,7 +341,7 @@ main {
 /* Admin Dashboard Layout */
 .admin-container {
     display: flex;
-    min-height: 100vh;
+    flex-grow: 1;
     background-color: #f8f3e8;
 }
 
@@ -349,6 +350,7 @@ main {
     padding: 20px;
     width: 250px;
     border-right: 1px solid #ddd;
+    flex-shrink: 0;
 }
 
 .admin-sidebar h2 {
@@ -402,7 +404,7 @@ main {
     margin-bottom: 40px;
 }
 
-.animal-form .form-group {
+.animal-form .form-group, .form-group-radio {
     margin-bottom: 20px;
 }
 
@@ -414,12 +416,23 @@ main {
 
 .animal-form input[type="text"], 
 .animal-form select, 
-.animal-form input[type="file"] {
+.animal-form input[type="number"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-sizing: border-box;
+}
+
+.form-group-radio {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: left;
+}
+
+.form-group-radio label{
+    margin: 0;
 }
 
 .submit-btn {
@@ -437,14 +450,18 @@ main {
 
 /* Animal List */
 .animal-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
     gap: 20px;
 }
 
 .animal-card {
     background-color: #fff9f2;
     padding: 15px;
+    width: 250px;
+    height: 300px;
     border: 1px solid #ddd;
     border-radius: 8px;
     text-align: center;
