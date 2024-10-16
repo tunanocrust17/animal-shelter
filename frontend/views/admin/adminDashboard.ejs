@@ -16,7 +16,7 @@
             <ul>
                 <li><a href="/admin/dashboard">Dashboard</a></li>
                 <li><a href="/admin/createAnimal">Add New Animal</a></li>
-                <li><a href="/admin/settings">Settings</a></li>
+                <li><a href="/admin/editTraits">Edit Traits</a></li>
                 <li><a href="/admin/settings">Sign Out</a></li>
             </ul>
         </aside>
@@ -31,9 +31,9 @@
                         <img src="<%= animal.img %>" alt="<%= animal.name %>">
                         <h4><%= animal.name %></h4>
                         <p>Age: <%= animal.age %></p>
-                        <p>Type: <%= animal.type %></p>
-                        <a href="/admin/edit-animal/<%= animal.id %>" class="edit-btn">Edit</a>
-                        <a href="/admin/delete-animal/<%= animal.id %>" class="delete-btn">Delete</a>
+                        <p>Type: <%= animal.species %></p>
+                        <a href="/admin/edit-animal/<%= animal.animal_id %>" class="edit-btn">Edit</a>
+                        <a href="/admin/delete-animal/<%= animal.animal_id %>" class="delete-btn">Delete</a>
                     </div>
                 <% }) %>
             </div>
