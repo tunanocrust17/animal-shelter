@@ -19,15 +19,29 @@
             
             <!-- Items Section -->
             <section class="section items-container">
-                <h1><%= title %></h1>
                 
-                <div class="items">
-                        <div class="item-card">
-                            <img src=" <%= animal.img %> " alt="<%= animal.name %>">
-                            <h4> <%= animal.name %> </h4>
-                            <p> <%= animal.age %></p>
+                <div class="profile-container">
+                    <!-- Animal Basic Info -->
+                    <div class="animal-profile">
+                        <div class="profile-header">
+                            <img src="<%= animal.img %>" alt="<%= animal.name %>" class="animal-profile-img">
+                            <h2><%= animal.name %></h2>
+                            <p class="adoption-status">
+                                <%= animal.adopted ? "Adopted" : "Available for Adoption" %>
+                            </p>
                         </div>
+                
+                        <div class="animal-details">
+                            <p><strong>Species:</strong> <%= animal.species %></p>
+                            <p><strong>Age:</strong> <%= animal.age %> <%= animal.age_units %></p>
+                            <p><strong>Gender:</strong> <%= animal.gender %></p>
+                            <p><strong>Weight:</strong> <%= animal.weight %> <%= animal.weight_unit %></p>
+                        </div>
+                    </div>
+                
+                    <!-- Hobbies and Quirks Section -->
                 </div>
+                
                  
             </section>
         </div>
