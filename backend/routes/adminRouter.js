@@ -20,7 +20,7 @@ adminRouter.get('/createAnimal', (req, res) => {
 adminRouter.post('/createAnimal', async (req, res) => {
     try{
         await animalController.createAnimal(req, res)
-    } catch(err){
+    } catch(error){
         console.error('Error in route handler: ', error);
         res.status(500).send('Internal service error')
     }
