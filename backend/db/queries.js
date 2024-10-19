@@ -2,13 +2,24 @@ const db = require('../data/animalData');
 const pool = require('./pool');
 
 class FormData {
-    async getHobbies(){
+    static async getHobbies(){
         const query = 'SELECT hobby_name FROM Hobbies'
         try{
             const res = await pool.query(query)
             return res.rows
         } catch(err){
             console.error('Error fetching hobby options: ', err)
+            throw err;
+        }
+    }
+
+    static async getQuirks(){
+        const query = 'SELECT quirk_name FROM Quirks'
+        try{
+            const res = await pool.query(query)
+            return res.rows
+        } catch(err){
+            console.error('Error fetching quirk options: ', err)
             throw err;
         }
     }
@@ -34,6 +45,17 @@ class AnimalClass {
         } catch(err) {
             console.error('Error fetching all animals: ', err);
             throw err;
+        }
+    }
+
+    static async getAllAnimalsSorted(){
+        const query = 'SELECT * FROM Animals ORDER BY name ASC'
+        try {
+            const res = await pool.query(query)
+            return res.rows
+        } catch(err) {
+            console.error('Error fetching animals ordered by name: ', err)
+            throw err
         }
     }
 
