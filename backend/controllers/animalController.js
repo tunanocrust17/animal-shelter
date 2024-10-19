@@ -1,9 +1,10 @@
 const {AnimalClass} = require('../db/queries')
+const {FormData} = require('../db/queries')
 
 class AnimalController{
-    async getAllAnimals (req, res) {
+    async getAllAnimalsSorted (req, res) {
         try {
-            const animals = await AnimalClass.getAllAnimals()
+            const animals = await AnimalClass.getAllAnimalsSorted()
             if(animals){
                 res.render('./admin/adminDashboard', {
                     title: "All Animals",
@@ -30,7 +31,22 @@ class AnimalController{
             res.status(500).send('Error creating animal');
         }
     }
-}
+
+    async getCreateAnimal (req, res) {
+        const hobbies = await FormData.getHobbies()
+        const quirks = await FormData.getQuirks()
+        try {
+            res.render('./admin/createAnimal', {
+                hobbies: hobbies,
+                quirks: quirks
+            })
+            } catch (error) {
+                console.error('error fetching hobbies or quirks: ', error)
+            }
+        }
+    }
+    
+
 
 module.exports = {
     AnimalController
