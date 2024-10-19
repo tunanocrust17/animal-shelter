@@ -6,15 +6,19 @@ const animalController = new AnimalController()
 
 adminRouter.get('/dashboard', async (req, res) => {
     try {
-        await animalController.getAllAnimals(req, res)
+        await animalController.getAllAnimalsSorted(req, res)
     } catch(err) {
         console.error('Error fetching animals: ', err);
         res.status(500).json({error: 'Error fetching animals'})
     }
 })
 
-adminRouter.get('/createAnimal', (req, res) => {
-    res.render('./admin/createAnimal')
+adminRouter.get('/createAnimal', async (req, res) => {
+    try {
+        await animalController.getCreateAnimal(req, res)
+    } catch (error) {
+        console.error('Error fetching hobbies or quirks: ', error);
+    }
 })
 
 adminRouter.post('/createAnimal', async (req, res) => {
