@@ -301,15 +301,17 @@ main {
 }
 
 .item-card {
-    background-color: #fff;
-    border: 3px solid #ffb703;
+    border: 3px solid #fb9734;
     border-radius: 10px;
     width: 250px;
     height: 300px;
     text-align: center;
     transition: transform 0.3s ease;
     position: relative;
-    overflow: hidden;
+    overflow: hidden; 
+    background-color: #fff9f2;
+    padding: 15px;
+    border-radius: 8px;
 }
 
 .item-card:hover {
@@ -317,10 +319,14 @@ main {
 }
 
 .item-card img {
-    width: 100%;
+    /* width: 100%;
     height: 200px;
     object-fit: cover;
-    border-radius: 10px 10px;
+    border-radius: 10px 10px; */
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 .item-card h4 {
@@ -378,6 +384,23 @@ main {
     margin-bottom: 20px;
 }
 
+.adoption-status-avail { 
+    display: inline-block;
+    margin: 10px 5px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #ff7043;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    }
+    
+.adoption-status-avail:hover {
+    background-color: #ff5722;
+    color: #fff;
+}
+
 /* Animal details section */
 .animal-details p {
     font-size: 1.1rem;
@@ -388,15 +411,15 @@ main {
 /* Hobbies and quirks section */
 .animal-hobbies {
     width: 100%;
-    background-color: #fef3e7;
+    /* background-color: #fef3e7; */
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); */
     margin-top: 20px;
 }
 
 .animal-hobbies h3 {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     color: #ff7043;
     margin-bottom: 15px;
     text-align: center;
@@ -411,6 +434,9 @@ main {
 
 .animal-hobbies li {
     margin-bottom: 10px;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
 }
 
 
