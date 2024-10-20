@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css">
-    <title><%= animal.name %>></title>
+    <title>Meet <%= animal.name %></title>
 </head>
 <body>
     <%- include('components/navbar') %>
 
     <main>
         <div class="page-intro">
-            <h2><%= animal.intro %> </h2>
+            <h2>Meet your new friend <%= animal.name %>! </h2>
         </div>
         <div class="content-container">
             <!-- Sidebar Section -->
@@ -26,9 +26,11 @@
                         <div class="profile-header">
                             <img src="<%= animal.img %>" alt="<%= animal.name %>" class="animal-profile-img">
                             <h2><%= animal.name %></h2>
-                            <p class="adoption-status">
-                                <%= animal.adopted ? "Adopted" : "Available for Adoption" %>
-                            </p>
+                            <% if (animal.adopted) { %>
+                                <p class="adoption-status"> Adopted </p>
+                            <% } else { %>
+                                <a href="" class="adoption-status-avail">Available to Adopt</a>
+                            <% } %>
                         </div>
                 
                         <div class="animal-details">
@@ -40,6 +42,31 @@
                     </div>
                 
                     <!-- Hobbies and Quirks Section -->
+                    <div class="animal-hobbies">
+                        <h3>Hobbies</h3>
+                        <ul>
+                            <% if(hobbies.length > 0) { %>
+                                <% hobbies.forEach(hobby => { %>
+                                    <li><%= hobby.hobby_name %></li>
+                                <% }) %>
+                            <% } else { %>
+                                <li>No hobbies available for <%= animal.name %> yet.</li>
+                            <% } %>
+                        </ul>
+                    </div>
+
+                    <div class="animal-hobbies">
+                        <h3>Quirks</h3>
+                        <ul>
+                            <% if(quirks.length > 0) { %>
+                                <% quirks.forEach(quirk => { %>
+                                    <li><%= quirk.quirk_name %></li>
+                                <% }) %>
+                            <% } else { %>
+                                <li>No quirks available for <%= animal.name %> yet.</li>
+                            <% } %>
+                        </ul>
+                    </div>
                 </div>
                 
                  
