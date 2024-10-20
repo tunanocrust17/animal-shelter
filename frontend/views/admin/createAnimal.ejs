@@ -78,25 +78,23 @@
 
                 <div class="form-group">
                     <label for="hobbies">Hobbies:</label>
-                    <select name="hobbies" id="hobbies" multiple>
+                    <select name="hobbies[]" id="hobbies" multiple>
                         <% hobbies.forEach(hobby => { %> 
-                            <option value=" <%= hobby.hobby_name %>">
+                            <option value="<%= hobby.hobby_id %>">
                                 <%= hobby.hobby_name %>
                             </option>
                         <% }) %>
-                        <option value=""></option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="quirks">Hobbies:</label>
-                    <select name="quirks" id="quirks" multiple>
+                    <select name="quirks[]" id="quirks" multiple>
                         <% quirks.forEach(quirk => { %> 
-                            <option value=" <%= quirk.quirk_name %>">
+                            <option value="<%= quirk.quirks_id %>">
                                 <%= quirk.quirk_name %>
                             </option>
                         <% }) %>
-                        <option value=""></option>
                     </select>
                 </div>
 
