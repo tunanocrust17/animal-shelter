@@ -21,10 +21,16 @@ class AnimalController{
     }
 
     async createAnimal(req, res) {
-        const {name, species, age, age_units, gender, weight, weight_unit, img, adopted} = req.body
+        const {name, species, age, age_units, gender, weight, weight_unit, img, adopted, hobbies, quirks} = req.body
+        
+        // Ensure hobbies and quirks are arrays (could be empty arrays)
+        if (!Array.isArray(hobbies) || !Array.isArray(quirks)) {
+            return res.status(400).json({ error: "Hobbies and quirks must be arrays" });
+        }
 
         try {
-            await AnimalClass.createAnimal(name, species, age, age_units, gender, weight, weight_unit, img, adopted);
+            await AnimalClass.createAnimal(name, species, age, age_units, gender, weight, weight_unit, img, adopted, hobbies, quirks);
+            console.log(hobbies)
             res.redirect('dashboard');
         } catch (error) {
             console.error('Error creating animal:', error);
