@@ -91,7 +91,7 @@
                     <label for="quirks">Hobbies:</label>
                     <select name="quirks[]" id="quirks" multiple>
                         <% quirks.forEach(quirk => { %> 
-                            <option value="<%= quirk.quirks_id %>">
+                            <option value="<%= quirk.quirk_id %>">
                                 <%= quirk.quirk_name %>
                             </option>
                         <% }) %>
