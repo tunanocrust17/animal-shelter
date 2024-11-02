@@ -30,6 +30,22 @@ adminRouter.post('/createAnimal', async (req, res) => {
     }
 })
 
+adminRouter.get('/updateAnimal/:id', async (req, res) => {
+    try{
+        await animalController.getUpdateAnimal(req, res)
+    } catch(error) {
+        console.error('Error fetching update animal', error)
+    }
+})
+
+adminRouter.post('/updateAnimal', async (req, res) => {
+    try {
+        await animalController.postUpdateAnimal(req, res)
+    } catch(error) {
+        console.error('Error updating animal:', error)
+    }
+})
+
 module.exports = {
     adminRouter
 }

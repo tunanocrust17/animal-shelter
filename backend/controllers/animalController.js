@@ -27,10 +27,12 @@ class AnimalController{
         if (!Array.isArray(hobbies) || !Array.isArray(quirks)) {
             return res.status(400).json({ error: "Hobbies and quirks must be arrays" });
         }
+        console.log(hobbies)
+        console.log(quirks)
 
         try {
             await AnimalClass.createAnimal(name, species, age, age_units, gender, weight, weight_unit, img, adopted, hobbies, quirks);
-            console.log(hobbies)
+            
             res.redirect('dashboard');
         } catch (error) {
             console.error('Error creating animal:', error);
@@ -46,11 +48,67 @@ class AnimalController{
                 hobbies: hobbies,
                 quirks: quirks
             })
-            } catch (error) {
-                console.error('error fetching hobbies or quirks: ', error)
-            }
+        } catch (error) {
+            console.error('error fetching hobbies or quirks: ', error)
         }
     }
+
+    async getUpdateAnimal (req, res) {
+
+        const animal_ID = parseInt(req.params.id)
+
+        try {
+            const animal = await AnimalClass.getAnimalByID(animal_ID)
+
+            const allHobbies = await FormData.getHobbies()
+            const animalHobbies = await AnimalClass.getAnimalHobbies(animal_ID)
+            // Extract hobby_ids for easier comparison
+            const animalHobbiesIDs = animalHobbies.map(hobby => hobby.hobby_id)
+
+            const allQuirks = await FormData.getQuirks()
+            const animalQuirks = await AnimalClass.getAnimalQuirks(animal_ID)
+            const animalQuirksIDs = animalQuirks.map(quirk => quirk.quirk_id)
+
+            res.render('./admin/updateAnimal', {
+                title: animal.name,
+                animal: animal,
+                hobbies: allHobbies, 
+                animalHobbiesIDs: animalHobbiesIDs,
+                quirks: allQuirks,
+                animalQuirksIDs: animalQuirksIDs
+            })
+        } catch (error) {
+            console.error('error fetching get update animal page', error)
+        }
+    }
+
+    async postUpdateAnimal (req, res) {
+
+        let {animal_id, name, species, age, age_units, gender, weight, weight_unit, img, adopted, hobbies, quirks} = req.body
+
+        let newAnimal_id = parseInt(animal_id)
+
+        if (!Array.isArray(hobbies)) {
+            hobbies = hobbies ? [hobbies] : [];
+        }
+        if (!Array.isArray(quirks)) {
+            quirks = quirks ? [quirks] : [];
+        }
+
+
+        console.log(newAnimal_id)
+        console.log(typeof(newAnimal_id))
+        try {
+            await AnimalClass.updateAnimal(newAnimal_id, name, species, age, age_units, gender, weight, weight_unit, img, adopted, hobbies, quirks)
+            res.redirect('dashboard')
+        } catch (error) {
+            console.error('Error updating animal: ', error)
+            res.status(500).send('Error updating animal');
+        }
+    }
+
+    
+}
     
 
 

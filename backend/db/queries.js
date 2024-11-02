@@ -63,6 +63,93 @@ class AnimalClass {
         }
     }
 
+    static async updateAnimal(animal_id, name, species, age, age_units, gender, weight, weight_unit, img, adopted, hobbies, quirks){
+        const client = await pool.connect()
+
+        try {
+            await pool.query('BEGIN')
+
+            console.log(typeof(animal_id))
+
+            //Update the animal basic info
+            const animalQuery = `UPDATE Animals SET name = $1, 
+                                    species = $2, 
+                                    age = $3, 
+                                    age_units = $4, 
+                                    gender = $5, 
+                                    weight = $6, 
+                                    weight_unit = $7, 
+                                    img = $8, 
+                                    adopted = $9
+                                    WHERE animal_id = $10`
+            const animalValues = [name, species, age, age_units, gender, weight, weight_unit, img, adopted, animal_id]
+            await client.query(animalQuery, animalValues)
+
+
+            //get all the hobbies the animal currently has
+            const currentHobbies = await client.query(
+                'SELECT hobby_id FROM Animal_Hobbies WHERE animal_id = $1'
+            , [animal_id]);
+    
+            const currentHobbyIds = currentHobbies.rows.map(row => row.hobby_id);
+            
+            // Determine which hobbies to insert and which to delete
+            const hobbiesToAdd = hobbies.filter(hobby => !currentHobbyIds.includes(hobby));
+            const hobbiesToRemove = currentHobbyIds.filter(hobbyId => !hobbies.includes(hobbyId));
+    
+            // Insert new hobbies
+            if (hobbiesToAdd.length > 0) {
+                const insertHobbiesQuery = `INSERT INTO Animal_Hobbies (animal_id, hobby_id) VALUES ${hobbiesToAdd.map((_, i) => `($1, $${i + 2})`).join(', ')} ON CONFLICT (animal_id, hobby_id) DO NOTHING`;
+                await client.query(insertHobbiesQuery, [animal_id, ...hobbiesToAdd]);
+            }
+
+            //Delete hobbies that are no longer selected
+            if (hobbiesToRemove.length  > 0) {
+                const deleteHobbiesQuery = `DELETE FROM Animal_Hobbies WHERE animal_id = $1 AND hobby_id = ANY($2)`;
+                await client.query(deleteHobbiesQuery, [animal_id, hobbiesToRemove])
+            }
+
+
+            // Fetch current quirks for the animal
+            const currentQuirks = await client.query(`
+                SELECT quirk_id FROM Animal_Quirks WHERE animal_id = $1;
+            `, [animal_id]);
+
+            const currentQuirkIds = currentQuirks.rows.map(row => row.quirk_id);
+
+            // Determine which quirks to insert and which to delete
+            const quirksToAdd = quirks.filter(quirk => !currentQuirkIds.includes(quirk));
+            const quirksToRemove = currentQuirkIds.filter(quirkId => !quirks.includes(quirkId));
+
+            // Insert new quirks
+            if (quirksToAdd.length > 0) {
+                const insertQuirksQuery = `
+                    INSERT INTO Animal_Quirks (animal_id, quirk_id)
+                    VALUES ${quirksToAdd.map((_, i) => `($1, $${i + 2})`).join(', ')}
+                    ON CONFLICT (animal_id, quirk_id) DO NOTHING;
+                `;
+                await client.query(insertQuirksQuery, [animal_id, ...quirksToAdd]);
+            }
+
+            // Remove quirks that were deselected
+            if (quirksToRemove.length > 0) {
+                const deleteQuirksQuery = `
+                    DELETE FROM Animal_Quirks WHERE animal_id = $1 AND quirk_id = ANY($2);
+                `;
+                await client.query(deleteQuirksQuery, [animal_id, quirksToRemove]);
+            }
+
+            await client.query('COMMIT') //commit the transaction
+            
+        } catch (err) {
+            await client.query('ROLLBACK')
+            console.error('Error updating animals: ', err)
+            throw err
+        } finally {
+            client.release()
+        }
+    }
+
     static async getAllAnimals(){
         const query = 'SELECT * FROM Animals'
         try {

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Admin Dashboard - Paws for Love Animal Shelter</title>
+</head>
+<body>
+    <%- include('../components/navbar') %>
+
+    <div class="admin-container">
+        <!-- Sidebar for Admin Links -->
+        <aside class="admin-sidebar">
+            <h2>Admin Dashboard</h2>
+            <ul>
+                <li><a href="/admin/dashboard">Dashboard</a></li>
+                <li><a href="/admin/createAnimal">Add New Animal</a></li>
+                <li><a href="/admin/settings">Settings</a></li>
+                <li><a href="/admin/settings">Sign Out</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="admin-content">
+            <h1>Manage Animals</h1>
+            <!-- Form for Adding or Editing Animal -->
+            <form class="animal-form" action="/admin/updateAnimal" method="POST">
+                <input type="hidden" name="animal_id" value="<%= animal.animal_id %>">
+
+                <div class="form-group">
+                    <label for="name">Animal Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter animal's name" value="<%= animal.name %>" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="age">Animal Age:</label>
+                    <input type="number" id="age" name="age" placeholder="Enter animal's age" max="100" value="<%= animal.age %>" required>
+                </div>
+
+                <div class="form-group-radio">
+                    <input type="radio" id="months" name="age_units" value="Months" <%= animal.age_units === 'Months' ? 'checked' : '' %> required>
+                    <label for="months">Months</label>
+                    <input type="radio" id="years" name="age_units" value="Years" <%= animal.age_units === 'Years' ? 'checked' : '' %> required>
+                    <label for="years">Years</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="species">Animal Type:</label>
+                    <select id="species" name="species" required>
+                        <option value="Dog">Dog</option>
+                        <option value="Cat">Cat</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="gender" required>
+                        <option value="male" <%= animal.gender === 'male' ? 'selected' : '' %>'>Male</option>
+                        <option value="Female" <%= animal.gender === 'Female' ? 'selected' : '' %>>Female</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="weight">Weight:</label>
+                    <input type="number" id="weight" name="weight" placeholder="Enter animal's weight" max="1000" value="<%= animal.weight %>" required>
+                </div>
+
+                <div class="form-group-radio">
+                    <input type="radio" id="Pounds" name="weight_unit" value="Pounds" <%= animal.weight_unit === 'Pounds' ? 'checked' : '' %> required>
+                    <label for="pounds">Pounds</label>
+                    <input type="radio" id="Kilograms" name="weight_unit" value="Kilograms" <%= animal.weight_unit === 'Kilograms' ? 'checked' : '' %> required>
+                    <label for="Kilograms">Kilograms</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="img">Animal Image:</label>
+                    <input type="text" id="img" name="img" value="<%= animal.img %>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="hobbies">Hobbies:</label>
+                    <select name="hobbies[]" id="hobbies" multiple>
+                        <% hobbies.forEach(hobby => { %> 
+                            <option value="<%= hobby.hobby_id %>" <%= animalHobbiesIDs.includes(hobby.hobby_id) ? 'selected' : '' %>>
+                                <%= hobby.hobby_name %>
+                            </option>
+                        <% }) %>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quirks">Hobbies:</label>
+                    <select name="quirks[]" id="quirks" multiple>
+                        <% quirks.forEach(quirk => { %> 
+                            <option value="<%= quirk.quirk_id %>" <%= animalQuirksIDs.includes(quirk.quirk_id) ? 'selected' : '' %>>
+                                <%= quirk.quirk_name %>
+                            </option>
+                        <% }) %>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="adopted">Check Box below if the animal been adopted:</label>
+                    <input type="checkbox" id="adopted" name="adopted" >
+                </div>
+
+                <button type="submit" class="submit-btn">Save Animal</button>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../components/footer') %>
+
+    <script src="/index.js"></script>
+</body>
+</html>
